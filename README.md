@@ -1,4 +1,4 @@
-Chris Jeppesen - Cardiovascular test
+Chris Jeppesen - Cardiovascular
 
 TODO: Add more to the title of your project here
 
