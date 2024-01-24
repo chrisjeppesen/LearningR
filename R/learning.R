@@ -58,3 +58,72 @@ NHANES_small %>%
 NHANES_small %>%
   select(starts_with("bp_")) %>%
   rename(bp_systolic = bp_sys_ave)
+
+
+# Filtering data by row ---------------------------------------------------
+
+filter(NHANES_small, phys_active == "No")
+
+# Filter med pibe
+NHANES_small %>%
+  filter(phys_active == "No")
+# Not physical active
+NHANES_small %>%
+  filter(phys_active != "No")
+# BMI equal 25
+NHANES_small %>%
+  filter(bmi == 25)
+# BMI equal or higher than 25
+NHANES_small %>%
+  filter(bmi >= 25)
+
+TRUE & TRUE
+TRUE & FALSE
+FALSE & FALSE
+TRUE | TRUE
+TRUE | FALSE
+FALSE | FALSE
+
+NHANES_small %>%
+  filter(bmi == 25 & phys_active == "No") %>%
+  select(bmi, phys_active)
+
+NHANES_small %>%
+  filter(bmi == 25 | phys_active == "No") %>%
+  select(bmi, phys_active)
+
+
+# Arranging the rows ------------------------------------------------------
+
+NHANES_small %>%
+  arrange(age)
+NHANES_small %>%
+  arrange(education) %>%
+  select(education)
+NHANES_small %>%
+  arrange(desc(age)) %>%
+  select(age)
+NHANES_small %>%
+  arrange(age, education)
+
+# Transform or add columns ------------------------------------------------
+# multiply
+NHANES_small %>%
+  mutate(age = age * 12)
+# multiply and log-transform
+NHANES_small %>%
+  mutate(
+    age = age * 12,
+    logged_bmi = log(bmi)
+  ) %>%
+  select(age, logged_bmi)
+
+NHANES_small %>%
+  mutate(
+    old = if_else(age >= 30, "Yes", "No")
+  )
+
+
+# Exercise 7.12 -----------------------------------------------------------
+
+
