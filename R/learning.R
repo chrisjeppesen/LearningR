@@ -160,22 +160,27 @@ NHANES_small %>%
     mean_bmi = mean(bmi, na.rm = TRUE)
   )
 NHANES_small %>%
-    filter(!is.na(diabetes)) %>%
-    group_by(diabetes) %>%
-    summarise(mean_age = mean (age, na.rm = TRUE),
-              mean_bmi = mean (bmi, na.rm = TRUE))
+  filter(!is.na(diabetes)) %>%
+  group_by(diabetes) %>%
+  summarise(
+    mean_age = mean(age, na.rm = TRUE),
+    mean_bmi = mean(bmi, na.rm = TRUE)
+  )
 
 NHANES_small %>%
-    filter(!is.na(diabetes)) %>%
-    filter(!is.na(phys_active)) %>%
-    group_by(diabetes,phys_active) %>%
-    summarise(mean_age = mean (age, na.rm = TRUE),
-              mean_bmi = mean (bmi, na.rm = TRUE)) %>%
-    ungroup()
+  filter(!is.na(diabetes)) %>%
+  filter(!is.na(phys_active)) %>%
+  group_by(diabetes, phys_active) %>%
+  summarise(
+    mean_age = mean(age, na.rm = TRUE),
+    mean_bmi = mean(bmi, na.rm = TRUE)
+  ) %>%
+  ungroup()
 
 
 # Saving dataset as files -------------------------------------------------
 
-readr::write_csv(NHANES_small,
-                 here::here("data/NHANES_small.csv"))
-
+readr::write_csv(
+  NHANES_small,
+  here::here("data/NHANES_small.csv")
+)
