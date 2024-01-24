@@ -3,7 +3,7 @@ title: "Reproducible documents"
 author: "Chris Jeppesen"
 format: html
 ---
-Chris Jeppesen
+Chris Jeppesen,
 Aarhus University
 
 # Intro
