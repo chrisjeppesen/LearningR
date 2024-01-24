@@ -1,0 +1,64 @@
+---
+title: "Reproducible documents"
+author: "Chris Jeppesen"
+format: html
+---
+
+```{r setup}
+#| message: FALSE
+#| warning: FALSE
+library(tidyverse)
+library(NHANES)
+nhanes_small <- read_csv(here::here("data/NHANES_small.csv"))
+```
+
+```{r}
+nhanes_small <- select(nhanes_small, age, gender, bmi, diabetes, phys_active, bp_sys_ave, bp_dia_ave, education)
+nhanes_small
+```
+
+```{r}
+2 + 2
+```
+
+#Table of results
+
+```{r}
+nhanes_small %>%
+  filter(!is.na(diabetes)) %>%
+  group_by(diabetes, education) %>%
+  summarise(
+    mean_age = mean(age, na.rm = TRUE),
+    mean_bmi = mean(bmi, na.rm = TRUE)
+  ) %>%
+  ungroup() %>%
+  knitr::kable(caption = "Mean values of Age and BMI for each education and diabetes status")
+```
+
+#Prettier tabel
+```{r}
+nhanes_small %>%
+  filter(!is.na(diabetes)) %>%
+  group_by(diabetes, education) %>%
+  summarise(
+    mean_age = mean(age, na.rm = TRUE),
+    mean_bmi = mean(bmi, na.rm = TRUE)
+  ) %>%
+  ungroup() %>%
+  
+    # 2. Round the means to 1 digit and
+  # modify the `education` column so that male and female get capitalized.
+  mutate(
+    mean_age = round(mean_age, 1),
+    mean_bmi = round(mean_bmi, 1),
+    education = str_to_sentence(education)
+  ) %>%
+# Task 3.
+    rename(
+        "diabetes status" = diabetes,
+        "Education" = education,
+        "Mean Age" = mean_age,
+        "Mean BMI" = mean_bmi
+  ) %>% 
+  knitr::kable(caption = "Mean values of Age and BMI for each education and diabetes status.")
+```
