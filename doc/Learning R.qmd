@@ -6,15 +6,17 @@ format: html
 Chris Jeppesen
 Aarhus University
 
-#Intro
+# Intro
 
 **Velkommen**
-#Methods and Results
+
+# Methods and Results
 
 *Banebrydende metoder og resultater*
-##Analysis
 
-#Discussion
+## Analysis
+
+# Discussion
 
 Fremragende
 
