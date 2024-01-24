@@ -8,10 +8,10 @@ Aarhus University
 
 #Intro
 
-**bold**Velkommen
+**Velkommen**
 #Methods and Results
 
-*italics*Banebrydende metoder og resultater
+*Banebrydende metoder og resultater*
 ##Analysis
 
 #Discussion
