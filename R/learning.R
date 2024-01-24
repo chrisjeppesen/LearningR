@@ -38,7 +38,7 @@ NHANES_small <- NHANES_small %>%
   rename(physically_active = phys_active)
 NHANES
 
-# Exercise ----------------------------------------------------------------
+# Exercise 7.8 ----------------------------------------------------------------
 # 1. Select specific column
 NHANES_small %>%
   select(bp_sys_ave, education)
