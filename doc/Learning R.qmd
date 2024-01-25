@@ -42,7 +42,7 @@ nhanes_small
 2 + 2
 ```
 
-#Table of results
+# Table of results
 
 ```{r}
 nhanes_small %>%
@@ -56,7 +56,7 @@ nhanes_small %>%
   knitr::kable(caption = "Mean values of Age and BMI for each education and diabetes status")
 ```
 
-#Prettier tabel
+# Prettier tabel
 ```{r}
 #| echo: false
 nhanes_small %>%
@@ -84,6 +84,7 @@ nhanes_small %>%
   ) %>% 
   knitr::kable(caption = "Mean values of Age and BMI for each education and diabetes status.")
 ```
+# Picture exercise
 
 ![Kitten copyright.](images/kitten.jpg)
 
