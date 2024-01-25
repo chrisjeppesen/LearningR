@@ -26,8 +26,8 @@ Fremragende
 
 
 ```{r setup}
-#| message: FALSE
-#| warning: FALSE
+#| message: false
+#| warning: false
 library(tidyverse)
 library(NHANES)
 nhanes_small <- read_csv(here::here("data/NHANES_small.csv"))
@@ -45,6 +45,8 @@ nhanes_small
 # Table of results
 
 ```{r}
+#| echo: false
+#| message: false
 nhanes_small %>%
   filter(!is.na(diabetes)) %>%
   group_by(diabetes, education) %>%
@@ -59,6 +61,7 @@ nhanes_small %>%
 # Prettier tabel
 ```{r}
 #| echo: false
+#| message: false
 nhanes_small %>%
   filter(!is.na(diabetes)) %>%
   group_by(diabetes, education) %>%
@@ -86,6 +89,6 @@ nhanes_small %>%
 ```
 # Picture exercise
 
-![Kitten copyright.](images/kitten.jpg)
+![Kitten copyright.](images/kitten.jpg){width="50%" height="50%"}
 
 
