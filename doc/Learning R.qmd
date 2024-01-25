@@ -21,7 +21,7 @@ Aarhus University
 Fremragende
 
 ```{r}
-2+2
+2 + 2
 ```
 
 
@@ -70,25 +70,81 @@ nhanes_small %>%
     mean_bmi = mean(bmi, na.rm = TRUE)
   ) %>%
   ungroup() %>%
-  
-    # 2. Round the means to 1 digit and
-  # modify the `education` column so that male and female get capitalized.
+  # 2. Round the means to 1 digit and
   mutate(
     mean_age = round(mean_age, 1),
     mean_bmi = round(mean_bmi, 1),
     education = str_to_sentence(education)
   ) %>%
-# Task 3.
-    rename(
-        "diabetes status" = diabetes,
-        "Education" = education,
-        "Mean Age" = mean_age,
-        "Mean BMI" = mean_bmi
-  ) %>% 
+  # Task 3.
+  rename(
+    "Diabetes status" = diabetes,
+    "Education" = education,
+    "Mean Age" = mean_age,
+    "Mean BMI" = mean_bmi
+  ) %>%
   knitr::kable(caption = "Mean values of Age and BMI for each education and diabetes status.")
 ```
 # Picture exercise
 
-![Kitten copyright.](images/kitten.jpg){width="50%" height="50%"}
+Cute kitten in @fig-kitten
 
+![Kitten copyright.](images/kitten.jpg){#fig-kitten width="50%" height="50%"}
 
+### One variable plot
+
+```{r}
+#| fig-cap: "Distribution of BMI"
+#| label: fig-bmi-histo
+#| message: false
+nhanes_small %>%
+  filter(bmi <= 60) %>%
+  ggplot(aes(x = bmi)) +
+  geom_histogram(na.rm = TRUE)
+```
+
+```{r}
+#| label: fig-education-diabetes
+#| fig-cap: "Count of diabetes and education"
+#| fig-subcap:
+#| - "Number of those with different educational status"
+#| - "Number of those with or without diabetes"
+#| layout-ncol: 2
+
+nhanes_small %>%
+  filter(!is.na(education)) %>%
+  ggplot(aes(x = education)) +
+  geom_bar()
+
+nhanes_small %>%
+  filter(!is.na(diabetes)) %>%
+  ggplot(aes(x = diabetes)) +
+  geom_bar()
+```
+
+### Plotting two variables
+
+```{r}
+nhanes_small %>%
+  filter(bmi <= 60) %>%
+  ggplot(aes(x = bmi, y = bp_sys_ave)) +
+  geom_hex(na.rm = TRUE) +
+  geom_smooth(na.rm = TRUE)
+```
+### Plotting two discrete variables
+
+```{r}
+nhanes_small %>%
+  filter(!is.na(education), !is.na(diabetes)) %>%
+  ggplot(aes(x = diabetes, fill = education)) +
+  geom_bar(position = position_dodge())
+```
+
+### Plotting discrete and continous variables
+
+```{r}
+nhanes_small %>%
+  filter(!is.na(diabetes), bmi <= 60) %>%
+  ggplot(aes(x = diabetes, y = bmi)) +
+  geom_violin(na.rm = TRUE)
+```
